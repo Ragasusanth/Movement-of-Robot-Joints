@@ -1,58 +1,116 @@
-# Movement-of-Robot-Joints
-## Aim:  
-To move and drive the joints of the robot using python API.
+# MobileRobot-Openloopcontrol
+## Aim:
 
-## Equipment’s required:
+To develop a python control code to move the mobilerobot along the predefined path.
 
-Visual Components Premium 4.3
+## Equipments Required:
+1. RoboMaster EP core
+2. Python 3.7
 
-## Procedure:
+## Procedure
 
-1. 	In the eCatalog panel, Collections view, browse to Models by Type>Robots>Visual Components and then add a Generic Articulated Robot to the 3D world.
-2. 	Click the Modeling tab, and then add a Python Script behaviour. The script editor will open automatically when you add the behaviour.
-3. 	In the script editor, add the code and then compile the code.
+Step1:
+
+Use from robomaster import robot
+
+Step2:
+
+Choose the x,y,z - axis movement distance(meters).
+
+Step3:
+
+Give ep_chassis.move to move straight.
+
+Step4:
+
+Give time.sleep() for a break.
+
+Step5:
+
+Give ep_chassis.drive_speed to have a circular movement.
 
 ## Program
+
 ```python
+from robomaster import robot
+import time
+from robomaster import camera
+
+if _name_ == '_main_':
+    ep_robot = robot.Robot()
+    ep_robot.initialize(conn_type="ap")
+
+    ep_chassis = ep_robot.chassis
+    ep_led = ep_robot.led
+    ep_camera = ep_robot.camera
+
+    print("Video streaming started.....")
+    ep_camera.start_video_stream(display=True, resolution = camera.STREAM_360P)
+
+    ep_chassis.move(x=2.55, y=0, z=0, xy_speed=0.9).wait_for_completed()
+    ep_led.set_led(comp = "all",r=255,g=0,b=0,effect="on")
+
+    ep_chassis.move(x=0.4, y=0, z=80, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=128,g=0,b=0,effect="on")
+
+    ep_chassis.move(x=0.75, y=0, z=0, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=0,g=128,b=128,effect="on")
+
+    ep_chassis.move(x=0.3, y=0, z=90, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=225,g=0,b=0,effect="on")
+
+    ep_chassis.move(x=1.5, y=0, z=0, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=225,g=0,b=225,effect="on")
+
+    ep_chassis.move(x=0, y=0, z=60, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=0,g=225,b=255,effect="on")
+
+    ep_chassis.move(x=0, y=1.58, z=0, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=128,g=0,b=0,effect="on")
+
+    ep_chassis.move(x=0, y=0, z=48, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=153,g=51,b=102,effect="on")
+
+    ep_chassis.move(x=0, y=1.55, z=0, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=0,g=0,b=128,effect="on")
+
+    ep_chassis.move(x=2.05, y=0, z=0, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=255,g=102,b=0,effect="on")
+     
+    ep_chassis.move(x=0, y=0, z=80, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=153,g=51,b=0,effect="on")
+
+    ep_chassis.move(x=0.65, y=0, z=0, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=255,g=0,b=0,effect="on")
+
+    ep_chassis.move(x=0, y=0, z=360, xy_speed=0.8).wait_for_completed()
+    ep_led.set_led(comp = "all",r=255,g=0,b=255,effect="on")
+
+    time.sleep(4)
+    ep_camera.stop_video_stream()
+    print("Stopped video streaming.....")
+
+    ep_robot.close()
+```
+
+## MobileRobot Movement Image:
+
+![image](https://github.com/user-attachments/assets/77c7d1bf-45dd-4ef8-96d1-7bac8d4754fd)
+
+![image](https://github.com/user-attachments/assets/0572b968-0594-4478-ba90-73bbfeccbcc9)
 
 
+## MobileRobot Movement Video:
 
+https://youtu.be/B5CeHYMZFoo?si=UTfOkBW6MW8661zU
+
+## Result:
+Thus the python program code is developed to move the mobilerobot in the predefined path.
 
 
 
 ```
-## Output
-### 1. Generic Articulated Robot
-</br>
-</br>
-</br>
-</br>
-
-### 2. robot.driveJoints(0,0,0,0,0,0)
-</br>
-</br>
-</br>
-</br>
-
-### 3. Movement of Joint1
-</br>
-</br>
-</br>
-</br>
-
-### 3. Movement of Joint2
-</br>
-</br>
-</br>
-</br>
-
-### 3. Movement of Joint3
-</br>
-</br>
-</br>
-</br>
-
-## Result 
-Thus the different robots joints are moved with the help of python list.
-
-
+Mobile Robotics Laboratory
+Department of Artificial Intelligence and Data Science/ Machine Learning
+Saveetha Engineering College
+```
